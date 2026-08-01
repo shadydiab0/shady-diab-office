@@ -1,0 +1,27 @@
+function toggleCard(headerElement) {
+    const card = headerElement.parentElement;
+    card.classList.toggle('active');
+}
+
+// VCard Generation Function
+function downloadVCard() {
+    const vcardData = `BEGIN:VCARD
+VERSION:3.0
+FN:مكتب شادي دياب للمحاسبة والضرائب
+N:دياب;شادي;;;
+ORG:مكتب شادي دياب للمحاسبة والمراجعة والاستشارات المالية والضريبية
+TITLE:محاسب وقانوني ومستشار ضريبي
+TEL;TYPE=CELL,VOICE:+201500319000
+EMAIL;TYPE=WORK:shadydiab999@gmail.com
+ADR;TYPE=WORK:;;مكتب رقم 2 - الدور الثاني - جمعية تنمية المجتمع بالصباح - شارع ناصر;السويس;;;مصر
+URL;TYPE=WORK:https://maps.app.goo.gl/buJg7k9Sp11R47RE9
+END:VCARD`;
+
+    const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', 'Shady_Diab_Office.vcf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
